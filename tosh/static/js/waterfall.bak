@@ -1,0 +1,60 @@
+var f = "data/cleaned_final.csv"
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 800 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var svg = d3.select(".waterfall")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+d3.csv(f).then(function(data) {
+
+    // extract the year from the date and make it a string
+    
+    data.forEach(function(d) {
+        d.Event_Date = new Date(d.Event_Date);
+        d.Event_Date = d.Event_Date.getFullYear();
+        d.Event_Date = String(d.Event_Date);
+      //  console.log(d.Event_Date);
+    });
+
+    // group by year and count the accidents
+
+    grouped = _.countBy(data, "Event_Date");
+    
+    gk = Object.keys(grouped);
+    gv = Object.values(grouped);
+    gkl = gk.length;
+    
+    console.log(gk);
+    console.log(gv);
+    console.log(gkl);
+
+    var linearScale = d3.scaleLinear()
+	    .domain([0, (gkl - 1)])
+	    .range([0, 800]);
+
+    var ordinalScale = d3.scaleOrdinal()
+	    .domain(gk);
+	    //.range(['black']);
+
+    svg.append('g')
+	    .selectAll('text')
+	    .data(gk)
+	    .enter()
+	    .append('text')
+	    .attr('x', function(d, i) {
+		    return linearScale(i);
+	    })
+	    .text(function(d) {
+		    return d;
+	    })
+	    .style('fill', function(d) {
+		    return ordinalScale(d);
+	    });
+
+});
