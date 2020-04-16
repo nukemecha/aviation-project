@@ -13,7 +13,7 @@ const url = 'http://127.0.0.1:5000';
 // });
 
 var margin = {top: 30, right: 30, bottom: 30, left: 30},
-    width = 960 - margin.left - margin.right,
+    width = 800 - margin.left - margin.right,
     height = 600 - margin.top - margin.bottom;
 
 var svg = d3.select(".waterfall")
@@ -75,8 +75,8 @@ d3.json(url).then(function (data) {
     // now let's do some graphing 
     var xBandScale = d3.scaleBand()
         .domain(obj.map(d => d.phase))
-        .range([0, width])
-        .padding(0.1);
+        .range([0, width]);
+     //   .padding(0.1);
 
     var yLinearScale = d3.scaleLinear()
         .domain([0, d3.max(obj, d => d.y1)])
@@ -86,6 +86,14 @@ d3.json(url).then(function (data) {
 
     var yAxis = d3.axisLeft(yLinearScale)
         .tickFormat(d3.format(".2s"));
+    
+    var tip = d3.tip().attr('class', 'd3-tip').direction('e').offset([0,5])
+        .html(function(d) {
+            var content = "<span style='margin-left: 2.5px;'><b>" + d.count + "</b></span><br>";
+            
+            return content;
+        });
+    svg.call(tip);
 
 
     svg.append("g")
@@ -95,7 +103,7 @@ d3.json(url).then(function (data) {
 
     svg.append("g")
         .attr("class", "y axis")
-        .attr("transform", "translate(-5, 0)")
+        .attr("transform", "translate(0, 0)")
         .call(yAxis);
 
     var chart = svg.selectAll(".waterfall")
@@ -109,7 +117,10 @@ d3.json(url).then(function (data) {
         .attr("width", xBandScale.bandwidth())
         .attr("x", d => xBandScale(d.phase))
         .attr("y", d => yLinearScale(d.y1))
-        .attr("height", d => height - yLinearScale(d.y0));
+        .attr("height", d => height - yLinearScale(d.y1 - d.y0))
+        .attr("class", "bar")
+        .on('mouseover', tip.show)
+        .on('mouseout', tip.hide);
               
 });
 
