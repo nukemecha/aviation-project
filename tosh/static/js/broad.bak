@@ -1,4 +1,16 @@
-var f = "data/cleaned_final.csv"
+const url = 'http://127.0.0.1:5000';
+
+// const f = "data/cleaned_final.csv";
+
+// d3.csv(f).then(function(data) { 
+
+//     grouped = _.countBy(data, "Broad_Phase_of_Flight");
+
+//     console.log(grouped);
+
+//     my_order = []
+
+// });
 
 var margin = {top: 20, right: 20, bottom: 30, left: 40},
     width = 800 - margin.left - margin.right,
@@ -10,46 +22,38 @@ var svg = d3.select(".waterfall")
         .attr("height", height + margin.top + margin.bottom)
     .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-d3.csv(f).then(function(data) {
-
-    // extract the year from the date and make it a string
-    
-    data.forEach(function(d) {
-        d.Event_Date = new Date(d.Event_Date);
-        d.Event_Date = d.Event_Date.getFullYear();
-        d.Event_Date = String(d.Event_Date);
-      //  console.log(d.Event_Date);
-    });
-
-    // group by year and count the accidents
-    // using underscore.js countBy
-
-    grouped = _.countBy(data, "Event_Date");
-    
-    // console.log(grouped);
-
-    gk = Object.keys(grouped);
-    gv = Object.values(grouped);
         
-    // console.log(gk);
-    // console.log(gv);
+d3.json(url).then(function (data) {
+
+    // console.log(data.result)
+
+    var grouped = _.countBy(data.result, "Broad_Phase_of_Flight");
+
+    console.log(grouped);
+
+    var my_order = ["STANDING", "GO-AROUND", "TAXI", "TAKEOFF", "CLIMB",
+        "CRUISE", "MANEUVERING", "DESCENT", "APPROACH", "LANDING"];
+
+    var my_count = [];
     
-    // turn our grouped count into an array of objects for D3
-    // using underscore.js zip and map
-    
-    obj = _.zip(gk,gv).map(function(pair) { 
-        return _.object(["year","count"],pair); 
+    //console.log(my_order);
+
+    my_order.forEach(function (d) { 
+        console.log(grouped[d]);
+        my_count.push(grouped[d]);
     });
 
-    obj.year = +obj.year;
-    obj.count = +obj.count;
-    
-    console.log(obj);
+    // console.log(my_count);
+
+    obj = _.zip(my_order, my_count).map(function(pair) { 
+        return _.object(["phase","count"],pair); 
+    });
+
+    // console.log(obj);
 
     var x = d3.scaleBand()        
         .padding(0.2)
-        .domain(obj.map( d => d.year ))
+        .domain(obj.map( d => d.phase ))
         .rangeRound([0, width]);
 
     var y = d3.scaleLinear()
@@ -74,10 +78,12 @@ d3.csv(f).then(function(data) {
         .data(obj)
         .enter().append("rect")
         .attr("class", "bar")
-        .attr("x", x(d => d.year))
+        .attr("x", x(d => d.phase))
         .attr("y", y(d => d.count))
         .attr("width", x.bandwidth())
         .attr("height", (d => (height - y(d.count))));
-    
-    
+
+
+
 });
+
