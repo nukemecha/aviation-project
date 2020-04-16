@@ -1,5 +1,7 @@
-var myMap = L.map("map", {
-    center: [37.0902, -95.7129],
+
+
+var myMap = new L.map("map", {
+    center: new L.LatLng(37.0902, -95.7129),
     zoom: 4
   });
   
@@ -22,9 +24,18 @@ var myMap = L.map("map", {
     popupAnchor:  [10, -76] // point from which the popup should open relative to the iconAnchor
 });
   
-  d3.json("/data/new_cut.json", function(response) {
+function buildMap(Country){
+  d3.json("/data/data_json.json", function(response) {
   
     console.log(response);
+
+    // var container = L.DomUtil.get('map');
+
+    // if(container != null){
+
+    // container._leaflet_id = null;
+
+    // }
 
     var markers = L.markerClusterGroup();
   
@@ -32,10 +43,12 @@ var myMap = L.map("map", {
       var location = response[i];
       
       if (location) {
+        if (location.Country == Country) {
         
         markers.addLayer(L.marker([location.Latitude, location.Longitude], {icon: apIcon})
         .bindPopup("<h4 style='text-align:center;'>" + response[i].Location + 
         "</h4> <hr> <h4 style='text-align:center;'>" + response[i].Event_Date + "</h4>"))
+        }
       }
 
     }
@@ -44,4 +57,41 @@ var myMap = L.map("map", {
     myMap.addLayer(markers);
 
   });
+};
+
+  function init() {
+    var selector = d3.select('#selDataset');
+
+    d3.json("/data/data_json.json", function(response) {
+
+      console.log(response)
+    
+      var eventDate = [];
+    
+      for (var i = 0; i < response.length; i++) {
+          var location = response[i];
+      
+          if (location) {
+            eventDate.push(location.Country);
+          }
+      }
+        console.log(eventDate)
+        eventDateUnique = new Set(eventDate);
+        eventDateUnique.forEach( name => {
+            selector
+                .append('option')
+                .text(name)
+                .property('value',name);
+        });
+        var Country = eventDateUnique[0];
+        buildMap(Country);
+    });
+};
+
+function optionChanged(newYear) {
+  buildMap(newYear);
+//   buildMetadata(newSample);
+}
+
+init();
   

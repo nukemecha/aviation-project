@@ -6,28 +6,39 @@ var baseLayer = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.pn
   id: "mapbox.streets",
   accessToken: API_KEY
 });
-// myMap.removeLayer();
+
+url = new URL('http://127.0.0.1:5000/')
 
 function buildMap(Year){
-d3.json("/data/data_json.json", function(response) {
+d3.json(url, function(response) {
+
+
+    // d.Event_Date = new Date(d.Event_Date);
+    // d.Event_Date = d.Event_Date.getFullYear();
+    // d.Event_Date = String(d.Event_Date);
+
+// });
 
   console.log(response)
 
-var container = L.DomUtil.get('map');
+  var container = L.DomUtil.get('map');
 
-if(container != null){
+  if(container != null){
 
-container._leaflet_id = null;
+  container._leaflet_id = null;
 
-}
+  }
 
   var data = [];
 
-  for (var i = 0; i < response.length; i++) {
-      var location = response[i];
+  for (var i = 0; i < response.result.length; i++) {
+      var location = response.result[i];
   
       if (location) {
-        if (location.Year === Year) {
+        Event_Date = new Date(location.Event_Date);
+        rowYear = Event_Date.getFullYear();
+        rowYear = String(rowYear);
+        if (rowYear == Year) {
           data.push({lat: location.Latitude, lng: location.Longitude, count: location.Damage_Rating});
         }
       }
@@ -56,38 +67,42 @@ var cfg = {
   lngField: 'lng',
   // which field name in your data represents the data value - default "value"
   valueField: 'count'
-}
+};
 
 var heatmapLayer = new HeatmapOverlay(cfg);
 
-var myMap = new L.map("map", {
+var map = new L.map("map", {
   center: new L.LatLng(37.0902, -95.7129),
   zoom: 3,
   layers: [baseLayer, heatmapLayer]
-});
+}); 
 
 heatmapLayer.setData(testData);
-// myMap.off();
-// myMap.removeLayer();
+// heatmapLayer.off();
+// heatmapLayer.update();
+
 });
 };
   function init() {
     var selector = d3.select('#selDataset');
 
-    d3.json("/data/data_json.json", function(response) {
+    d3.json(url, function(response) {
 
       console.log(response)
     
       var eventDate = [];
     
-      for (var i = 0; i < response.length; i++) {
-          var location = response[i];
+      for (var i = 0; i < response.result.length; i++) {
+          var location = response.result[i];
       
           if (location) {
-            eventDate.push(location.Year);
+            Event_Date = new Date(location.Event_Date);
+            Year = Event_Date.getFullYear();
+            Year = String(Year);
+            eventDate.push(Year);
           }
       }
-        console.log(eventDate)
+        // console.log(eventDate)
         eventDateUnique = new Set(eventDate);
         eventDateUnique.forEach( name => {
             selector
@@ -100,8 +115,9 @@ heatmapLayer.setData(testData);
     });
 };
 
-function optionChanged(newSample) {
-  buildMap(newSample);
+function optionChanged(newYear) {
+  // heatmapLayer.remove()
+  buildMap(newYear);
 //   buildMetadata(newSample);
 }
 
