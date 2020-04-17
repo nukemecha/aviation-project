@@ -1,3 +1,5 @@
+url = 'http://127.0.0.1:5000/'
+
 var myMap = new L.map("map", {
   center: new L.LatLng(37.0902, -95.7129),
   zoom: 4
@@ -35,15 +37,15 @@ function buildMap(Country){
 
   markers = new L.markerClusterGroup();
 
-  for (var i = 0; i < data.length; i++) {
-    var location = data[i];
+  for (var i = 0; i < data.result.length; i++) {
+    var location = data.result[i];
     
     if (location) {
       if (location.Country == Country) {
       
       markers.addLayer(L.marker([location.Latitude, location.Longitude], {icon: apIcon})
-      .bindPopup("<h4 style='text-align:center;'>" + data[i].Location + 
-      "</h4> <hr> <h4 style='text-align:center;'>" + data[i].Event_Date + "</h4>"))
+      .bindPopup("<h4 style='text-align:center;'>" + data.result[i].Location + 
+      "</h4> <hr> <h4 style='text-align:center;'>" + data.result[i].Event_Date + "</h4>"))
       }
     }
 
@@ -51,21 +53,20 @@ function buildMap(Country){
 
   // Add our marker cluster layer to the map
   myMap.addLayer(markers);
-console.log(myMap)
 // });
 };
 
 function init() {
   var selector = d3.select('#selDataset');
 
-  d3.json("/data/data_json.json").then(function(response) {
+  d3.json(url).then(function(response) {
     data = response
     console.log(response)
   
     var eventDate = [];
   
-    for (var i = 0; i < data.length; i++) {
-        var location = data[i];
+    for (var i = 0; i < data.result.length; i++) {
+        var location = data.result[i];
     
         if (location) {
           eventDate.push(location.Country);
@@ -86,7 +87,6 @@ function init() {
 
 function optionChanged(newYear) {
 buildMap(newYear);
-//   buildMetadata(newSample);
 }
 
 init();
