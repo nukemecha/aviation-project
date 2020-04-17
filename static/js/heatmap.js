@@ -11,7 +11,7 @@ url = new URL('http://127.0.0.1:5000/')
 var datas;
 function buildMap(Year){
 
-  var container = L.DomUtil.get('map');
+  var container = L.DomUtil.get('heatmap');
 
   if(container != null){
 
@@ -61,7 +61,7 @@ var cfg = {
 
 var heatmapLayer = new HeatmapOverlay(cfg);
 
-var map = new L.map("map", {
+var map = new L.map("heatmap", {
   center: new L.LatLng(37.0902, -95.7129),
   zoom: 4,
   layers: [baseLayer, heatmapLayer]
@@ -71,7 +71,7 @@ heatmapLayer.setData(testData);
 
 };
   function init() {
-    var selector = d3.select('#selDataset');
+    var selector = d3.select('#selData');
 
     d3.json(url).then(function(response) {
       datas = response

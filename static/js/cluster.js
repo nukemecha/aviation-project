@@ -1,6 +1,6 @@
 url = 'http://127.0.0.1:5000/'
 
-var myMap = new L.map("map", {
+var myMap = new L.map("clustermap", {
   center: new L.LatLng(37.0902, -95.7129),
   zoom: 4
 });
@@ -26,7 +26,7 @@ var apIcon = L.icon({
 });
 var markers;
 var data;
-function buildMap(Country){
+function buildClusterMap(Country){
 // d3.json("/data/data_json.json").then(function(response) {
 
   // console.log(response);
@@ -81,12 +81,12 @@ function init() {
               .property('value',name);
       });
       var Country = eventDateUnique[0];
-      buildMap('United States');
+      buildClusterMap('United States');
   });
 };
 
-function optionChanged(newYear) {
-buildMap(newYear);
+function optionChanges(newCountry) {
+buildClusterMap(newCountry);
 }
 
 init();
