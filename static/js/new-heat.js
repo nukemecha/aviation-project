@@ -8,18 +8,8 @@ var baseLayer = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.pn
 });
 
 url = new URL('http://127.0.0.1:5000/')
-
+var datas;
 function buildMap(Year){
-d3.json(url, function(response) {
-
-
-    // d.Event_Date = new Date(d.Event_Date);
-    // d.Event_Date = d.Event_Date.getFullYear();
-    // d.Event_Date = String(d.Event_Date);
-
-// });
-
-  console.log(response)
 
   var container = L.DomUtil.get('map');
 
@@ -31,8 +21,8 @@ d3.json(url, function(response) {
 
   var data = [];
 
-  for (var i = 0; i < response.result.length; i++) {
-      var location = response.result[i];
+  for (var i = 0; i < datas.result.length; i++) {
+      var location = datas.result[i];
   
       if (location) {
         Event_Date = new Date(location.Event_Date);
@@ -43,13 +33,13 @@ d3.json(url, function(response) {
         }
       }
   }
-    console.log(data)
+    // console.log(data)
 
 var testData = {
   max: 3,
   data
 };
-console.log(testData)
+// console.log(testData)
 var cfg = {
     // radius should be small ONLY if scaleRadius is true (or small radius is intended)
   // if scaleRadius is false it will be the constant radius used in pixels
@@ -73,27 +63,24 @@ var heatmapLayer = new HeatmapOverlay(cfg);
 
 var map = new L.map("map", {
   center: new L.LatLng(37.0902, -95.7129),
-  zoom: 3,
+  zoom: 4,
   layers: [baseLayer, heatmapLayer]
 }); 
 
 heatmapLayer.setData(testData);
-// heatmapLayer.off();
-// heatmapLayer.update();
 
-});
 };
   function init() {
     var selector = d3.select('#selDataset');
 
-    d3.json(url, function(response) {
-
-      console.log(response)
+    d3.json(url).then(function(response) {
+      datas = response
+      // console.log(response)
     
       var eventDate = [];
     
-      for (var i = 0; i < response.result.length; i++) {
-          var location = response.result[i];
+      for (var i = 0; i < datas.result.length; i++) {
+          var location = datas.result[i];
       
           if (location) {
             Event_Date = new Date(location.Event_Date);
@@ -116,41 +103,7 @@ heatmapLayer.setData(testData);
 };
 
 function optionChanged(newYear) {
-  // heatmapLayer.remove()
   buildMap(newYear);
-//   buildMetadata(newSample);
 }
 
 init();
-
-/*  start legend code */
-// we want to display the gradient, so we have to draw it
-var legendCanvas = document.createElement('canvas');
-legendCanvas.width = 100;
-legendCanvas.height = 10;
-var min = document.querySelector('#min');
-var max = document.querySelector('#max');
-var gradientImg = document.querySelector('#gradient');
-var legendCtx = legendCanvas.getContext('2d');
-var gradientCfg = {};
-function updateLegend(data) {
-  // the onExtremaChange callback gives us min, max, and the gradientConfig
-  // so we can update the legend
-  min.innerHTML = data.min;
-  max.innerHTML = data.max;
-  // regenerate gradient image
-  if (data.gradient != gradientCfg) {
-    gradientCfg = data.gradient;
-    var gradient = legendCtx.createLinearGradient(0, 0, 100, 1);
-    for (var key in gradientCfg) {
-      gradient.addColorStop(key, gradientCfg[key]);
-    }
-    legendCtx.fillStyle = gradient;
-    legendCtx.fillRect(0, 0, 100, 10);
-    gradientImg.src = legendCanvas.toDataURL();
-  }
-};
-/* legend code end */
-
-// myMap.off();
-// myMap.removeLayer();
