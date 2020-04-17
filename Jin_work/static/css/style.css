@@ -1,0 +1,307 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: arial, sans-serif, helvetica;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: grey;
+  width: auto;
+}
+
+.home {
+  float: left;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  padding: 15px 20px 15px 20px;
+  text-decoration: none;
+}
+
+.right-nav {
+  float: right;
+}
+
+.navbar a:hover {
+  background-color: rgb(217, 217, 217);
+  color: yellow;
+}
+/* The wrapper contains all of the page's content besides the footer, which is pushed to the bottom of the page */
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  padding-bottom: 1px;
+  overflow: auto;
+}
+
+/* The footer is positioned at the bottom of the page */
+.footer {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  min-height: 50px;
+  background: #c7ecee;
+}
+
+/* The code styles the text at the bottom of the footer */
+.footer > .bottom {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 8px;
+  background:#22a6b3;
+  color:#dff9fb;
+}
+/* --------------- LANDING PAGE -------------------- */
+/* Container */
+
+.container-fluid {
+  /* margin-top: 50px; */
+  margin-bottom: 25px;
+  margin-left:50px;
+
+  
+}
+
+/* AVIATION SUMMARY */
+h1 {
+  text-align: left;
+  margin-top: 80px;
+  margin-left: 10px;
+  color: black;
+  font-weight: bold;
+  height: auto;
+  text-shadow: 1px 1px grey;
+}
+/* MAJOR DESASTERS */
+h2 {
+  text-align: left;
+  margin-top: 40px;
+  margin-left: 10px;
+  color: black;
+  font-weight: bold;
+  height: auto;
+  text-shadow: 1px 1px grey;
+}
+/* PARAGRAPH */
+
+div.text {
+  font-size: 15px;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 12px;
+  line-height:1.5;
+  color: #212529;
+  background-color: #dff9fb;
+  
+}
+
+.text {
+margin-top: 50px;
+text-align: left;
+}
+
+.col-md-6 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 15px;
+  padding-top: 1px;
+  margin-right: 20;
+  margin-left: 50;
+  border-right:10;
+}
+
+
+.col-md-4 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 0px;
+  padding-left: 50px;
+  padding-top: 1px;
+  margin-left:90;
+  margin-top:100px;
+
+}
+
+
+/* RESPONSIVE -----------*/
+
+
+
+
+/* --------------- TIME PAGE -------------------- */
+
+
+.container-fluid4 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-left:50px;
+}
+
+.text2 {
+  margin-top: 4px;
+  text-align: left;
+  padding-left: 50px;
+}
+h5 {
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #0fbcf9;
+  font-weight: bold;
+  height: auto;
+  text-shadow: 1px 1px grey ;
+
+}
+
+img.card-img-top3 {
+  align-items: left;
+  padding-left: 0px ;}
+
+img.card-img-top4 {
+  align-items: left;
+  padding-left: 50px;
+}
+
+
+
+
+
+/* RESPONSIVE -----------*/
+
+
+
+/* --------------- LOCATION PAGE -------------------- */
+
+.container-fluid3 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-left:50px;
+}
+
+.text2 {
+  margin-top: 4px;
+  text-align: left;
+  padding-left: 50px;
+}
+h4 {
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #EE5A24;
+  font-weight: bold;
+  height: auto;
+  text-shadow: 1px 1px grey ;
+
+}
+
+img.card-img-top1 {
+  align-items: left;
+  padding-left: 0px ;}
+
+img.card-img-top2 {
+  align-items: left;
+  padding-left: 50px;
+}
+
+
+
+/* RESPONSIVE -----------*/
+
+
+
+/* --------------- ABOUT PAGE -------------------- */
+
+
+h3 {
+  text-align: left;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #006266;
+  font-weight: bold;
+  height: auto;
+  text-shadow: 1px 1px #C4E538;
+
+}
+
+.text2 {
+  margin-top: 4px;
+  text-align: left;
+  padding-left: 50px;
+}
+
+
+.container-fluid2 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-left:50px;
+}
+
+.col-md-12 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 0px;
+  padding-left: 50px;
+  padding-top: 1px;
+  margin-left: 90;
+  margin-top: 10px;
+  margin-right: 10px;
+
+}
+
+img.card-img-top {
+  align-items: center;
+  padding-left: 50px;
+}
+
+/* RESPONSIVE -----------*/
+
+
+/* --------------- PHASE PAGE -------------------- */
+
+
+.container-fluid5 {
+  margin-top: 50px;
+  margin-bottom: 25px;
+  margin-left:50px;
+}
+
+.text2 {
+  margin-top: 4px;
+  text-align: left;
+  padding-left: 50px;
+}
+h6 {
+  text-align: left;
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  color: #ffa801;
+  font-weight: bold;
+  height: auto;
+  text-shadow: 1px 1px grey ;
+
+}
+
+img.card-img-top5 {
+  align-items: left;
+  padding-left: 0px ;}
+
+img.card-img-top6 {
+  align-items: left;
+  padding-left: 50px;
+}
