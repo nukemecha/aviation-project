@@ -7,5 +7,8 @@ app = Flask(__name__)
 def index():
     movie_list = ["Mighty Ducks", "Space Jam", "Clerks", "Batman", "Avengers"]
     return ("index.html")
+
+
+    
 if __name__ == "__main__":
     app.run(debug=True)
