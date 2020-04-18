@@ -18,8 +18,8 @@ var tiles = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?ac
 myMap.addLayer(tiles);
 
 var apIcon = L.icon({
-  iconUrl: 'ap_fire.png',
-  shadowUrl: 'ap_fire_shadow.png',
+  iconUrl: '../images/ap_fire.png',
+  shadowUrl: '../images/ap_fire_shadow.png',
 
   iconSize:     [60, 70], // size of the icon
   shadowSize:   [30, 35], // size of the shadow
