@@ -1,0 +1,20 @@
+body {
+    padding: 10px;
+    margin: 0px;
+  }
+  
+  #clustermap,
+  /* body, */
+  html {
+    min-width: 400px;
+    min-height: 400px;
+    position: relative;
+  }
+  
+  #heatmap,
+  /* body, */
+  html {
+    min-width: 400px;
+    min-height: 400px;
+    position: relative;
+  }
