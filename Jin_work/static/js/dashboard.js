@@ -61,7 +61,7 @@ console.log(myMap)
 
 function plotChart(country){
   // chartselector.html("");
-  d3.csv("/static/data/location_final.csv").then(function(aviationData) {
+  d3.json("http://127.0.0.1:5000/jin").then(function(aviationData) {
   
   aviationData=aviationData.filter(d =>d.Country===country);
     
@@ -88,7 +88,7 @@ function plotChart(country){
   var trace3 = {
     x: aviationData.map(d => +d.Year),
     y: aviationData.map(d => +d.Total_Minor_Injuries),
-    text: aviationData.map(d => d.romanName),
+    text: aviationData.map(d => d.minorInjury),
     name:"Minor Injury",
     type: "scatter",
     mode:"lines+markers"
@@ -96,8 +96,40 @@ function plotChart(country){
 
   var data=[trace1,trace2,trace3];
   var layout={
-    title:`${country} Injuries by Year`
-  }
+    showlegend: true,
+    legend: {
+      x: 1,
+      xanchor: 'right',
+      y: 1.15
+    },
+    title:{
+      text:`${country} Injuries by Year`,
+      font:{
+        family:"Times",
+        Size:24,
+      }
+    },
+    xaxis: {
+      title: {
+        text: 'Year',
+        font: {
+          family: 'Times',
+          size: 18,
+          color: '#7f7f7f'
+        }
+      },
+    },
+    yaxis:{
+      title: {
+        text: 'Injuries',
+        font: {
+          family: 'Times',
+          size: 18,
+          color: '#7f7f7f'
+        }
+      },
+    },
+  };
 
   Plotly.newPlot("injury_lineChart",data,layout)
   });
