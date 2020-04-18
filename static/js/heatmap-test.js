@@ -7,8 +7,14 @@ var baseLayer = L.tileLayer("https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.pn
 
 url = new URL('http://127.0.0.1:5000/')
 
+var map;
+var heatmapLayer;
 var datas;
 function buildMap(Year){
+
+  if(heatmapLayer != undefined){
+    map.removeLayer(heatmapLayer)
+  }
 
   var container = L.DomUtil.get('heatmap');
 
@@ -58,9 +64,9 @@ var cfg = {
   valueField: 'count'
 };
 
-var heatmapLayer = new HeatmapOverlay(cfg);
+heatmapLayer = new HeatmapOverlay(cfg);
 
-var map = new L.map("heatmap", {
+  map = new L.map("heatmap", {
   center: new L.LatLng(37.0902, -95.7129),
   zoom: 4,
   layers: [baseLayer, heatmapLayer]

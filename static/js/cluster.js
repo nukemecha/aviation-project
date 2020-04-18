@@ -31,7 +31,7 @@ function buildClusterMap(Country){
 
   // console.log(response);
 
-  if(markers !=undefined){
+  if(markers != undefined){
     myMap.removeLayer(markers)
   }
 
