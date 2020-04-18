@@ -2,7 +2,7 @@ url = 'http://127.0.0.1:5000/'
 
 var myMap = new L.map("clustermap", {
   center: new L.LatLng(37.0902, -95.7129),
-  zoom: 4
+  zoom: 2
 });
 
 // Adding tile layer
@@ -56,6 +56,7 @@ function buildClusterMap(Country){
 // });
 };
 
+
 function init() {
   var selector = d3.select('#selDataset');
 
@@ -63,25 +64,25 @@ function init() {
     data = response
     console.log(response)
   
-    var eventDate = [];
+    var country = [];
   
     for (var i = 0; i < data.result.length; i++) {
         var location = data.result[i];
     
         if (location) {
-          eventDate.push(location.Country);
+          country.push(location.Country);
         }
-    }
-      console.log(eventDate)
-      eventDateUnique = new Set(eventDate);
-      eventDateUnique.forEach( name => {
+    };
+    country = country.sort();
+      countryUnique = new Set(country);
+      countryUnique.forEach( name => {
           selector
               .append('option')
               .text(name)
               .property('value',name);
       });
-      var Country = eventDateUnique[0];
-      buildClusterMap('United States');
+      // var Country = countryUnique[0];
+      buildClusterMap('Afghanistan');
   });
 };
 
