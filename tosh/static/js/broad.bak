@@ -1,0 +1,89 @@
+const url = 'http://127.0.0.1:5000';
+
+// const f = "data/cleaned_final.csv";
+
+// d3.csv(f).then(function(data) { 
+
+//     grouped = _.countBy(data, "Broad_Phase_of_Flight");
+
+//     console.log(grouped);
+
+//     my_order = []
+
+// });
+
+var margin = {top: 20, right: 20, bottom: 30, left: 40},
+    width = 800 - margin.left - margin.right,
+    height = 500 - margin.top - margin.bottom;
+
+var svg = d3.select(".waterfall")
+    .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+d3.json(url).then(function (data) {
+
+    // console.log(data.result)
+
+    var grouped = _.countBy(data.result, "Broad_Phase_of_Flight");
+
+    console.log(grouped);
+
+    var my_order = ["STANDING", "GO-AROUND", "TAXI", "TAKEOFF", "CLIMB",
+        "CRUISE", "MANEUVERING", "DESCENT", "APPROACH", "LANDING"];
+
+    var my_count = [];
+    
+    //console.log(my_order);
+
+    my_order.forEach(function (d) { 
+        console.log(grouped[d]);
+        my_count.push(grouped[d]);
+    });
+
+    // console.log(my_count);
+
+    obj = _.zip(my_order, my_count).map(function(pair) { 
+        return _.object(["phase","count"],pair); 
+    });
+
+    // console.log(obj);
+
+    var x = d3.scaleBand()        
+        .padding(0.2)
+        .domain(obj.map( d => d.phase ))
+        .rangeRound([0, width]);
+
+    var y = d3.scaleLinear()
+        .rangeRound([height, 0])
+        .domain([0, d3.max(obj.map( d => d.count ))]);
+       
+    svg.append("g")
+        .attr("transform", "translate(0," + height + ")")
+        .call(d3.axisBottom(x))
+
+    svg.append("g")
+        .call(d3.axisLeft(y))
+        .append("text")
+        .attr("fill", "#000")
+        .attr("transform", "rotate(-90)")
+        .attr("y", 6)
+        .attr("dy", "0.71em")
+        .attr("text-anchor", "end")
+        .text("Accidents");
+
+    svg.selectAll("rect")
+        .data(obj)
+        .enter().append("rect")
+        .attr("class", "bar")
+        .attr("x", x(d => d.phase))
+        .attr("y", y(d => d.count))
+        .attr("width", x.bandwidth())
+        .attr("height", (d => (height - y(d.count))));
+
+
+
+});
+
