@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Time</title>
+	<!-- Leaflet CSS & JS -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css"
+	integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ=="
+	crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js"
+	integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q=="
+	crossorigin=""></script>   
+	 <!--D3 cdn-->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+	 <!-- Underscore JS -->
+	 <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+	 <!-- Our CSS -->
+	<link rel="shortcut icon" type="image/x-icon" href="http://www.thelostromance.com/wp-content/uploads/2017/06/cropped-The-Lost-Romance-Favicon.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+ 	<!-- Horizontal Bar Chart -->
+	 <script src="../static/dist/Chart.min.js"></script>
+	 <script src="../static/js/utils.js"></script>
+	 <style>
+	 canvas {
+		 -moz-user-select: none;
+		 -webkit-user-select: none;
+		 -ms-user-select: none;
+	 }
+	 </style>
+</head>
+<body>
+	<header>
+	<!-- The navigation menu-->
+		<div class="navbar">
+			<div class="home">
+  			<a href="index.html">Home</a> <!--Link to home-->
+  			</div>
+  				<div class="right-nav">
+				 <a href="location.html">Location</a>
+				 <a href="phase.html">Phases</a>
+    	 		 <a href="time2.html">Time</a>
+				  <a href="time.html">Heatmap</a>
+				  <a href="about.html">Architecture</a>
+    	 		</div>
+    	 </div>
+	  </header>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+	<main>
+		<!----- Container --> 
+		<div class="container-fluid4">
+			<div class="row justify-content-center">
+				<div class="row2">
+					<div class="col-md-2"></div>
+					<div class="col-md-8">
+						<h5>Type of Injury by year</h5>
+						<div id="container" style="width: 100%;"><canvas id="canvas"></canvas></div><br><br>
+						<button id="randomizeData">Randomize Data</button>
+						<button id="addDataset">Add Dataset</button>
+						<button id="removeDataset">Remove Dataset</button>
+						<button id="addData">Add Data</button>
+						<button id="removeData">Remove Data</button>
+						<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+						<script src="../static/js/barChart.js"></script>
+						
+						<div class="card text-white bg-dark"><br>
+							<div class="card-body"> 
+								<p class="card-text">
+									The maximum number of Fatal injuries have been recorded at 1074 in 2003 during the period 2000 to 2019. Observing the graph
+									 (red color) the number of fatal injuries per year pass 500. In 2000 the data recorded is limited. Serious Injuries maximum 
+									 recording is 472 in 2003 and in average pass 200 per year. Similarly, 2003 achieved the maximum number of Minor Injuries.<br>
+									 
+									 The two major events in 2003 were:<br>
+									 - 25 December – UTA Flight 141, a severely overloaded chartered Boeing 727–223, fails to become airborne during its takeoff 
+									 attempt from Cadjehoun Airport in Cotonou, Benin. It runs off the end of the runway and crashes on a beach along the Bight 
+									 of Benin, killing 151 of the 163 people on board. All 12 survivors as well as two people on the ground are injured. <br>
+									 - 8 July – Sudan Airways Flight 139, a Boeing 737-200, crashes at Port Sudan, Sudan, killing 116 of the 117 people on board. 
+									 A two-year-old boy is the only survivor.
+								</p>
+							</div>
+						</div>		
+					</div>	
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer class="footer">
+		<span class="bottom">Aviation Events</span>
+	</footer>
+	<!-- Leaflet JavaScript -->
+	<script src="https://unpkg.com/leaflet@1.0.0-rc.3/dist/leaflet.js"></script>
+	<!-- D3 JavaScript -->
+	<!-- Our JavaScript -->
+	<!-- <script src="../static/js/barChart.js"></script>						 -->
+	<!-- <script type="text/javascript" src="static/js/heatmap.js"></script> -->
+	<!-- API Key -->
+	<script type="text/javascript" src="../static/js/config.js"></script>	
+</body>
+</html>

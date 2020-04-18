@@ -7,9 +7,9 @@
 	<title>Aviation Events</title>
 	<link rel="shortcut icon" type="image/x-icon" href="http://www.thelostromance.com/wp-content/uploads/2017/06/cropped-The-Lost-Romance-Favicon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="static/css/style.css">
-
-
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
+​
+​
 </head>
 <body>
 	<div class="wrapper">
@@ -22,8 +22,9 @@
 					<div class="right-nav">
 						<a href="location.html">Location</a>
 						<a href="phase.html">Phases</a>
-						<a href="time.html">Time</a>
-						<a href="about.html">About</a>
+						<a href="time2.html">Time</a>
+						<a href="time.html">Heatmap</a>
+						<a href="about.html">Architecture</a>
 					</div>
 				</div>
 			</div>
@@ -35,7 +36,7 @@
 					<div class="row">			
 						<div class="col-md-6">
 							<h1>Aviation Summary</h1>
-							<h2>Major Desasters</h2>
+							<h2>Major Disasters</h2>
 							<!---1 of 2--->
 							<p class="text1">
 								As of March 2020, starting from the 1978 Air India Flight 855 incident up to the 2018 Algerian Air Force Ilyushin Il-76 incident, 
@@ -64,13 +65,64 @@
 						</div>
 						<div class="col-md-4">
 							<div class="card text-white bg-dark">
-								<img class=card-img-top src="static/images/Aircraft_in_the_sky.jpg", width="500px"/>	
+								<img class=card-img-top src="../static/images/Aircraft_in_the_sky.jpg", width="500px"/>	
 								<div class="card-body"> 
 									<p class="card-text">
 									Air travel is the fastest method of transport around, and can cut hours or days off of a trip. Transoceanic travel would be a factor of months without planes, and numerous rural zones can't be reached without it. As the WV Department of Aviation says, "One to two days travel by auto can be accomplished in one to two hours of flight.". 
 									</p>
 								</div>
 							</div>	
+						</div>
+						<div class="col-md-8">
+							<h2>Team Members</h2>
+							<p class="text1">
+								<li>Daniel 'Tosh' Murchison</li>
+								<li>Edith Jimenez Mendez</li>
+								<li>Jin Dai</li>
+								<li>Michael Gonzalez</li>
+								<li>Mike Sammis</li>
+							</p>	
+							<h2>Project Topic</h2>
+								<p class="text1">
+									Aviation Events
+								</p>
+							<h2>Database</h2>
+								<p class="text1">
+								The NTSB aviation accident database contains information from 1962 and later about civil aviation accidents and 
+								selected incidents within the United States, its territories and possessions, and in international waters.<br>
+								Database: https://www.kaggle.com/khsamaha/aviation-accident-database-synopses/data
+								</p>  						
+							<h2>Inspiration</h2>
+								<p class="text1">
+								The team identified this database a good source, robust and granular dataset of aviation events (accidents and incidents)
+								Preliminary analyis inspired us to go further in this analysis and learn about the recurrence of aircraft accidents. 
+								</p>  
+							<h2>Scope</h2>
+								<p class="text1">
+								<ol>The following describes the outlook of the project.</ol>
+								<li>ETL on CSV file: write the jupyter notebook with observations of the process used.</li>
+								<li>Import CSV into Mongo DB </li>
+								<li>Flask app to pull data from Mongo DB</li>
+								<li>Develop html files for front end and corresponding styles CSS, utility, leaflet </li>
+								<li>JavaScript code to create and insert interactive visualizations, listed below:</li>
+								<style type="text/css">
+									<!--
+									 .tab { margin-left: 40px; }
+									-->
+								</style>
+								<p class="tab">- Land page with aviation summary, possible video, or picture. <br>
+									- Chart Time_Keeps_On_Ticking and write a paragraph with the results of the chart. <br>
+									- Chart Country map with markers show the accident city lat&long and add a paragraph with the observations.<br>
+									- Chart Different types of injuries each year by country.<br>
+									- Chart Global heat map accident by year and add a paragraph with the observations. <br> 
+									- Bar chart of different type of injuries by year by month globally (New JS library, chart.js) and add a paragraph with the observations. <br>
+									- Chart Aviation accident by make an model bar charts and add a paragraph with the observations. <br>
+									- Chart Waterfall chart for Broad phase flight versus total injuries and add a paragraph with the observations. <br>
+								 </p>
+								   
+								</p>
+							.<br><br>
+							</p>
 						</div>
 					</div>
 				</div>

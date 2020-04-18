@@ -7,61 +7,62 @@
 	<title>Phase</title>
 	<link rel="shortcut icon" type="image/x-icon" href="http://www.thelostromance.com/wp-content/uploads/2017/06/cropped-The-Lost-Romance-Favicon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 
 </head>
 <body>
+
+	<style>
+        .bar {
+          fill: steelblue;
+        }
+    
+        .bar:hover {
+          fill: brown;
+        }
+	</style>
+	
 	<header>
-	<!-- The navigation menu-->
-		<div class="navbar">
-			<div class="home">
-  			<a href="index.html">Home</a> <!--Link to home-->
-  			</div>
-  				<div class="right-nav">
-				 <a href="location.html">Location</a>
-				 <a href="phase.html">Phases</a>
-    	 		<a href="time.html">Time</a>
-    	 		<a href="about.html">About</a>
-    	 		</div>
-    	 </div>
-  	</header>
+			<!-- The navigation menu-->
+				<div class="navbar">
+					<div class="home">
+						<a href="index.html">Home</a> <!--Link to home-->
+					</div>
+						<div class="right-nav">
+							<a href="location.html">Location</a>
+							<a href="phase.html">Phases</a>
+							<a href="time2.html">Time</a>
+							<a href="time.html">Heatmap</a>
+							<a href="about.html">Architecture</a>
+						</div>
+					</div>
+				</div>
+	</header>
 	<main>
 		<!----- Container --> 
 		<div class="container-fluid5">
 			<div class="row justify-content-center">
 				<div class="row2">			
-					<div class="col-md-6">
+					<div class="col-md-2">
 						<div class="card text-white bg-dark" style="margin: 10px;">
-							<h6>Events By Model and Maker per Year</h6>
-							<img class=card-img-top5 src="static/images/horizontal_bar_chart.png",  alt="horizontal chart" />
-							<div class="card-body"> 
-								<p class="card-text">
-								tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, 
-								ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies 
-								mi vitae est. Mauris placerat eleifend leo..
-								</p>
-							</div>
+							
+							
 						</div>
 					</div>	
-					<div class="col-md-6">
+					<div class="col-md-8">
 						<div class="card text-white bg-dark" style="margin: 10px;">
-							<h6>Event by Broad Phase of Flight</h6>
-							<img class=card-img-top6 src="static/images/waterfall.png",  alt="waterfall" />
-							<div class="card-body"> 
-								<p class="card-text">
-								Air travel is the fastest method of transport around, and can cut hours or days off of a trip. Transoceanic travel would 
-								be a factor of months without planes, and numerous rural zones can't be reached without it. As the WV Department of 
-								Aviation says, "One to two days travel by auto can be accomplished in one to two hours of flight.". 
-								</p>
-							</div>
+							<div class="waterfall"></div>
 						</div>		
 					</div>	
 				</div>
 			</div>
 		</div>
 	</main>
-	<footer class="footer">
-		<span class="bottom">Aviation Events</span>
-	</footer>	
+
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-tip/0.9.1/d3-tip.min.js"></script>
+	<script type="text/javascript" src="../static/js/broad.js"></script>
+	
 </body>
 </html>

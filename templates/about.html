@@ -7,7 +7,7 @@
 	<title>About</title>
 	<link rel="shortcut icon" type="image/x-icon" href="http://www.thelostromance.com/wp-content/uploads/2017/06/cropped-The-Lost-Romance-Favicon.png">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="static/css/style.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/style.css">
 </head>
 <body>
 	<header>
@@ -19,8 +19,9 @@
   				<div class="right-nav">
 				 <a href="location.html">Location</a>
 				 <a href="phase.html">Phases</a>
-    	 		<a href="time.html">Time</a>
-    	 		<a href="about.html">About</a>
+                 <a href="time2.html">Time</a>
+                 <a href="time.html">Heatmap</a>
+    	 		<a href="about.html">Architecture</a>
     	 		</div>
     	 </div>
 	</header>
@@ -30,16 +31,54 @@
 			<div class="row justify-content-center">
 				<div class="row1">			
 					<div class="col-md-8">
-						<h3>Time Keeps On Ticking</h3>
+						<h3>Architecture Diagram</h3>
 						<p class="text2">
-							Air travel is the fastest method of transport around, and can cut hours or days off of a trip. Transoceanic travel would 
-							be a factor of months without planes, and numerous rural zones can't be reached without it. As the WV Department of 
-							Aviation says, "One to two days travel by auto can be accomplished in one to two hours of flight.".
+							The data flow diagram (DFD) ilustrate how the data is processed by a system in terms of inputs and output.
+							 DFD also shows the way the information flows through a process or system. It includes data inputs and outputs, 
+							 data stores, and the various subprocesses the data moves through.
+							 DFDs are built using symbols and notation to describe various entities and their relationships.<br><br> 
+							 DFD below shows five(5) phases: Data Source, ETL, Web Server Database, Javascript, Styles, Front-End. 
+							 Each of these phase execute some actions.
 						</p>
 						<br>
 					</div>
 					<div class="col-md-12">
-						<img class=card-img-top src="static/images/Time_ticking.gif" alt="map" />	
+						<img class=card-img-top src="../static/images/Architecture.PNG" alt="database" />
+​
+​
+						<div class="row justify-content-center">
+							<div class="row1">			
+								<div class="col-md-8">
+									<div class="row justify-content-between">
+									<p class="text2">
+										<li>Phase - Data Source<br>
+										The data flow diagram (DFD) ilustrate how the data is processed by a system in terms of inputs and output.
+										DFD also shows the way the information flows through a process or system. It includes data inputs and outputs, 
+										data stores, and the various subprocesses the data moves through.<br>
+										</li><br>
+										<li>Phase - ETL<br>
+											Carry out the extraction, normalization and loading of the 
+											data to the database.<br><br> 
+										</li>
+										<li>Phase - Web Server Database<br>
+											Comprise the reception of the data coming from jypiter notebook and then establish the connection using 
+											flask to transfer the data to Mongo Database (MongoDB)<br><br>
+										</li>
+										<li>Phase - Javascript<br>
+											This phase cover javascript code used to transfor the input dataset and execute some commands to transform the 
+											data in graphic visualization.<br> - Config.js: contains api key.<br> - location.js: include the code to 
+											generate map location and multiple-lines graphs<br> - broad.js: hold the code to build waterfall graph<br>
+											 - cluster.js: contain the code to build a cluster map in leaflet <br> - heatmap.js: enclose the code to 
+											generate global heat map <br> - barChart.js: consist of the code to built  horizontal bar chart using 
+											chart.js library from javascript.<br><br>
+										</li>
+										<li>Phase - Styles<br>
+											Comprehend the slyles used on the beautification of the html and final front-end. <br><br>
+										</li>
+										<li>Phase - Front-End<br>
+											Show to the user the application and data visualizations 
+										</li>
+									</p>
 					</div>
 				</div>	
 			</div>
